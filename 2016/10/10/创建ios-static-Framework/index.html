@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      创建ios static Framework | Jiayu&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="iOS创建静态库纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。
+类似于各类SDK，只暴露bundle文件，和Framework文件。可以将本地文件（高内聚，低耦合之类）文件放到pod中。HERE也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有.h文件，自己用的时候好装B的说。
+xcode: 7.3.1
+bundle文件b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建ios static Framework | Jiayu's Blog">
+<meta property="og:url" content="http://yoursite.com/2016/10/10/创建ios-static-Framework/index.html">
+<meta property="og:site_name" content="Jiayu's Blog">
+<meta property="og:description" content="iOS创建静态库纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。
+类似于各类SDK，只暴露bundle文件，和Framework文件。可以将本地文件（高内聚，低耦合之类）文件放到pod中。HERE也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有.h文件，自己用的时候好装B的说。
+xcode: 7.3.1
+bundle文件b">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-ff3ed9d6cf8b5eac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-82e3b66e0ef3498e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-abecca22e746d233.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-07435dcab9e7ab26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-155a7a4ea7b04336.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-a56514b87e91b8e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-c9b0d40eb0282003.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-b53a2ac7a169f3f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-97ccc01bd525ae4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-0f6d92b5376538c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-10-10T09:25:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="创建ios static Framework | Jiayu's Blog">
+<meta name="twitter:description" content="iOS创建静态库纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。
+类似于各类SDK，只暴露bundle文件，和Framework文件。可以将本地文件（高内聚，低耦合之类）文件放到pod中。HERE也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有.h文件，自己用的时候好装B的说。
+xcode: 7.3.1
+bundle文件b">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1397715-ff3ed9d6cf8b5eac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Jiayu&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">创建ios static Framework</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-10" class="post-meta__date date">2016-10-10</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/iOS，ReactNative/">iOS，ReactNative</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h1 id="iOS创建静态库"><a href="#iOS创建静态库" class="headerlink" title="iOS创建静态库"></a>iOS创建静态库</h1><p>纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。</p>
+<p>类似于各类SDK，只暴露bundle文件，和Framework文件。<br>可以将本地文件（高内聚，低耦合之类）文件放到pod中。<a href="">HERE</a><br>也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有.h文件，自己用的时候好装B的说。</p>
+<p><code>xcode: 7.3.1</code></p>
+<h2 id="bundle文件"><a href="#bundle文件" class="headerlink" title="bundle文件"></a>bundle文件</h2><p>bundle是只是包含资源文件。</p>
+<h3 id="新建bundle"><a href="#新建bundle" class="headerlink" title="新建bundle"></a>新建bundle</h3><ol>
+<li>新建一个工程。选择<br><img src="http://upload-images.jianshu.io/upload_images/1397715-ff3ed9d6cf8b5eac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
+<li>将文件拖到工程中，然后点击Run一下,bundle文件就生成了。右键showinFinder就可以找到文件，加入到所需项目中即可使用。<br><img src="http://upload-images.jianshu.io/upload_images/1397715-82e3b66e0ef3498e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
+<li>如图</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/1397715-abecca22e746d233.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<h2 id="Framework是静态文件"><a href="#Framework是静态文件" class="headerlink" title="Framework是静态文件"></a>Framework是静态文件</h2><p>Framework在ios中可以是静态库也可以是动态库。但是只有Apple官方可以创建。<br>看下说明：</p>
+<blockquote>
+<p>静态库：链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。</p>
+<p>动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。</p>
+</blockquote>
+<p>说白了，就是静态库只有你写的app可以用，动态库是可以即使app在挂起的时候，各个app也可以公用的文件。</p>
+<h3 id="创建Framework文件"><a href="#创建Framework文件" class="headerlink" title="创建Framework文件"></a>创建Framework文件</h3><ol>
+<li>新建工程<br><img src="http://upload-images.jianshu.io/upload_images/1397715-07435dcab9e7ab26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
+<li>设置状态为<br><img src="http://upload-images.jianshu.io/upload_images/1397715-155a7a4ea7b04336.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
+<li>如何不暴露出来文件<br><img src="http://upload-images.jianshu.io/upload_images/1397715-a56514b87e91b8e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
+<li><p>会有一个问题，做出来的Framework可能没法兼容真机和模拟器，然后做兼容。<img src="http://upload-images.jianshu.io/upload_images/1397715-c9b0d40eb0282003.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+</li>
+<li><p>然后 <img src="http://upload-images.jianshu.io/upload_images/1397715-b53a2ac7a169f3f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br><img src="http://upload-images.jianshu.io/upload_images/1397715-97ccc01bd525ae4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># Sets the target folders and the final framework product.</div><div class="line"># 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME</div><div class="line"># 例如: FMK_NAME = &quot;MyFramework&quot;</div><div class="line">FMK_NAME=$&#123;PROJECT_NAME&#125;</div><div class="line"># Install dir will be the final output to the framework.</div><div class="line"># The following line create it in the root folder of the current project.</div><div class="line">INSTALL_DIR=$&#123;SRCROOT&#125;/Products/$&#123;FMK_NAME&#125;.framework</div><div class="line"># Working dir will be deleted after the framework creation.</div><div class="line">WRK_DIR=build</div><div class="line">DEVICE_DIR=$&#123;WRK_DIR&#125;/Release-iphoneos/$&#123;FMK_NAME&#125;.framework</div><div class="line">SIMULATOR_DIR=$&#123;WRK_DIR&#125;/Release-iphonesimulator/$&#123;FMK_NAME&#125;.framework</div><div class="line"># -configuration $&#123;CONFIGURATION&#125;</div><div class="line"># Clean and Building both architectures.</div><div class="line">xcodebuild -configuration &quot;Release&quot; -target &quot;$&#123;FMK_NAME&#125;&quot; -sdk iphoneos clean build</div><div class="line">xcodebuild -configuration &quot;Release&quot; -target &quot;$&#123;FMK_NAME&#125;&quot; -sdk iphonesimulator clean build</div><div class="line"># Cleaning the oldest.</div><div class="line">if [ -d &quot;$&#123;INSTALL_DIR&#125;&quot; ]</div><div class="line">then</div><div class="line">rm -rf &quot;$&#123;INSTALL_DIR&#125;&quot;</div><div class="line">fi</div><div class="line">mkdir -p &quot;$&#123;INSTALL_DIR&#125;&quot;</div><div class="line">cp -R &quot;$&#123;DEVICE_DIR&#125;/&quot; &quot;$&#123;INSTALL_DIR&#125;/&quot;</div><div class="line"># Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.</div><div class="line">lipo -create &quot;$&#123;DEVICE_DIR&#125;/$&#123;FMK_NAME&#125;&quot; &quot;$&#123;SIMULATOR_DIR&#125;/$&#123;FMK_NAME&#125;&quot; -output &quot;$&#123;INSTALL_DIR&#125;/$&#123;FMK_NAME&#125;&quot;</div><div class="line">rm -r &quot;$&#123;WRK_DIR&#125;&quot;</div><div class="line">open &quot;$&#123;INSTALL_DIR&#125;&quot;</div></pre></td></tr></table></figure>
+<ol>
+<li>Run一下这个test schema。成功之后会open当前的文件，Framework库就完成了。拖到工程中即可使用。<br><img src="http://upload-images.jianshu.io/upload_images/1397715-0f6d92b5376538c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
+</ol>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

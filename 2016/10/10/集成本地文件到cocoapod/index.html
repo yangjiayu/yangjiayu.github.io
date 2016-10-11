@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      集成本地文件到cocoapod | Jiayu&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="路漫漫其修远兮，吾将上下而求索。
+
+记录学习之路。小白一个，大神轻喷。。
+如果还不了解什么是cocoapod，可以看一下这个@唐巧的技术博客。
+借鉴了资料@i沙漏。
+cocoapod确实是好用，不仅帮助我们集成第三方库，而且把需要的系统框架和.a文件冲突一并解决了，但是仅仅是安装github上的文件是不够的，如果你有不想放在github上的，或者是只是本项目的固定文件（eg:model和数据请求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集成本地文件到cocoapod | Jiayu's Blog">
+<meta property="og:url" content="http://yoursite.com/2016/10/10/集成本地文件到cocoapod/index.html">
+<meta property="og:site_name" content="Jiayu's Blog">
+<meta property="og:description" content="路漫漫其修远兮，吾将上下而求索。
+
+记录学习之路。小白一个，大神轻喷。。
+如果还不了解什么是cocoapod，可以看一下这个@唐巧的技术博客。
+借鉴了资料@i沙漏。
+cocoapod确实是好用，不仅帮助我们集成第三方库，而且把需要的系统框架和.a文件冲突一并解决了，但是仅仅是安装github上的文件是不够的，如果你有不想放在github上的，或者是只是本项目的固定文件（eg:model和数据请求">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-9631f6d7372ae0fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-10-10T09:18:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="集成本地文件到cocoapod | Jiayu's Blog">
+<meta name="twitter:description" content="路漫漫其修远兮，吾将上下而求索。
+
+记录学习之路。小白一个，大神轻喷。。
+如果还不了解什么是cocoapod，可以看一下这个@唐巧的技术博客。
+借鉴了资料@i沙漏。
+cocoapod确实是好用，不仅帮助我们集成第三方库，而且把需要的系统框架和.a文件冲突一并解决了，但是仅仅是安装github上的文件是不够的，如果你有不想放在github上的，或者是只是本项目的固定文件（eg:model和数据请求">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1397715-9631f6d7372ae0fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Jiayu&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">集成本地文件到cocoapod</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-10" class="post-meta__date date">2016-10-10</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/iOS/">iOS</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <blockquote>
+<p>路漫漫其修远兮，吾将上下而求索。</p>
+</blockquote>
+<p>记录学习之路。小白一个，大神轻喷。。</p>
+<p>如果还不了解什么是cocoapod，可以看一下这个<a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="external">@唐巧的技术博客</a>。</p>
+<p>借鉴了资料<a href="http://ishalou.com/blog/2012/10/16/how-to-create-a-cocoapods-spec-file/" target="_blank" rel="external">@i沙漏</a>。</p>
+<p>cocoapod确实是好用，不仅帮助我们集成第三方库，而且把需要的系统框架和<em>.a</em>文件冲突一并解决了，但是仅仅是安装github上的文件是不够的，如果你有不想放在github上的，或者是只是本项目的固定文件（eg:model和数据请求文件之类写完没什么大的改动的）,如果也用cocoapod来管理的话，显得项目有序的多。<br>废话不多说，进入正题。</p>
+<h2 id="安装cocoapod"><a href="#安装cocoapod" class="headerlink" title="安装cocoapod"></a>安装cocoapod</h2><p><strong>打开终端,安装pod</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">➜  podSpec git:(master) pod init</div><div class="line">➜  podSpec git:(master) ✗ pod install --no-repo-update</div></pre></td></tr></table></figure>
+<p><strong>安装完pod之后，在上一目录下（这个可以建在任何地方，待会能找得到就好）新建一个文件夹，在文件夹下搭建本文件夹下的podspec文件：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">➜  podSpec git:(master) ✗ pod spec create Model</div></pre></td></tr></table></figure>
+<p><strong>打开model.podspec文件:(ps：推荐用终端打开，其他编辑器打开会有标点符号不对问题)</strong></p>
+<h2 id="编辑podspec"><a href="#编辑podspec" class="headerlink" title="编辑podspec"></a>编辑podspec</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Pod::Spec.new do |s|</div><div class="line"></div><div class="line">  s.name         = &quot;Model&quot; //名字 不用改</div><div class="line">  s.version      = &quot;0.0.1&quot; // 版本号 上传的时候要用到，不用改</div><div class="line">  s.requires_arc = true    // 支持ARC吗</div><div class="line">  s.platform     = :ios, &apos;7.0&apos; // 最低支持的平台</div><div class="line">  s.source_files = &apos;**/*.&#123;h,m&#125;&apos;  //当前平级目录下的所有.m和.h文件</div><div class="line">  s.dependency &apos;AFNetworking&apos;  // 是否要需要其他库的支持</div><div class="line"> end</div></pre></td></tr></table></figure>
+<p><strong>在podfile文件里 指向当前的podspec文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;Model&apos;, :path =&gt; &apos;../Framework&apos;</div></pre></td></tr></table></figure>
+<p><strong>最后在安装一下pod 就大功告成了</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod install --no-repo-update</div></pre></td></tr></table></figure>
+<p><strong>打开工程，就可以发现多了一个文件夹，<img src="http://upload-images.jianshu.io/upload_images/1397715-9631f6d7372ae0fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png">大功告成了。</strong></p>
+<p><strong>如果想要在多文件支持的话，重新编辑下podspec文件即可。<br>例如新加一个Networking文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new do |s|</div><div class="line"></div><div class="line">  s.name         = &quot;Model&quot;</div><div class="line">  s.version      = &quot;0.0.1&quot;</div><div class="line">  s.requires_arc = true</div><div class="line">  s.platform     = :ios, &apos;7.0&apos;</div><div class="line">  s.source_files = &apos;**/*.&#123;h,m&#125;&apos;</div><div class="line">  s.dependency &apos;AFNetworking&apos;</div><div class="line"></div><div class="line">  s.subspec &apos;Networking&apos; do |ss|</div><div class="line">    ss.source_files = &apos;Networking/**/*.&#123;h,m&#125;&apos;</div><div class="line">  end  </div><div class="line"> end</div></pre></td></tr></table></figure>
+<p><strong>然后在重新安装一下pod</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod install --no-repo-uptate</div></pre></td></tr></table></figure>
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

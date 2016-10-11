@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      React Native入门 | Jiayu&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="层级关系,学习过程Javascript推荐比较好的学习网站，没事的时候去溜达溜达。
+@廖雪峰的Javascript
+@W3School学习Javascript
+ReactJSReactJS是facebook推出的一种框架。主要的是解决复杂或频繁的DOM操作。ReactJS是创建一种虚拟DOM的方式，diff算法，每当有更新时，计算渲染的组件，避免不必要其他组件的渲染。
+ReactNative并不是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native入门 | Jiayu's Blog">
+<meta property="og:url" content="http://yoursite.com/2016/10/10/React-Native入门/index.html">
+<meta property="og:site_name" content="Jiayu's Blog">
+<meta property="og:description" content="层级关系,学习过程Javascript推荐比较好的学习网站，没事的时候去溜达溜达。
+@廖雪峰的Javascript
+@W3School学习Javascript
+ReactJSReactJS是facebook推出的一种框架。主要的是解决复杂或频繁的DOM操作。ReactJS是创建一种虚拟DOM的方式，diff算法，每当有更新时，计算渲染的组件，避免不必要其他组件的渲染。
+ReactNative并不是">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-89918dd16096b8e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-3cdcce04b11ae063.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-10-10T09:15:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native入门 | Jiayu's Blog">
+<meta name="twitter:description" content="层级关系,学习过程Javascript推荐比较好的学习网站，没事的时候去溜达溜达。
+@廖雪峰的Javascript
+@W3School学习Javascript
+ReactJSReactJS是facebook推出的一种框架。主要的是解决复杂或频繁的DOM操作。ReactJS是创建一种虚拟DOM的方式，diff算法，每当有更新时，计算渲染的组件，避免不必要其他组件的渲染。
+ReactNative并不是">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1397715-89918dd16096b8e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Jiayu&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">React Native入门</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-10" class="post-meta__date date">2016-10-10</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/ReactNative/">ReactNative</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h1 id="层级关系-学习过程"><a href="#层级关系-学习过程" class="headerlink" title="层级关系,学习过程"></a>层级关系,学习过程</h1><h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><p>推荐比较好的学习网站，没事的时候去溜达溜达。</p>
+<p><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">@廖雪峰的Javascript</a></p>
+<p><a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">@W3School学习Javascript</a></p>
+<h2 id="ReactJS"><a href="#ReactJS" class="headerlink" title="ReactJS"></a>ReactJS</h2><p>ReactJS是facebook推出的一种框架。<br>主要的是解决复杂或频繁的DOM操作。<br>ReactJS是创建一种虚拟DOM的方式，diff算法，每当有更新时，计算渲染的组件，避免不必要其他组件的渲染。</p>
+<h2 id="ReactNative"><a href="#ReactNative" class="headerlink" title="ReactNative"></a>ReactNative</h2><p>并不是webView的实现。</p>
+<p>React是一种思想，Facebook对于Web Components的理解与实现.</p>
+<p>React native 是用React的方式开发mobileApp。</p>
+<h1 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h1><p><img src="http://upload-images.jianshu.io/upload_images/1397715-89918dd16096b8e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="reactjs.png"></p>
+<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><p><img src="http://upload-images.jianshu.io/upload_images/1397715-3cdcce04b11ae063.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="component.jpg"></p>
+<p>生命周期大体可以分为三部分：</p>
+<ul>
+<li>MOUNTING</li>
+<li>RECEIVE_PROPS</li>
+<li>UNMOUNTING</li>
+</ul>
+<p>getDefaultProps 方法只执行一次，这样所有实例初始化的 props 将会被共享。</p>
+<h1 id="React刷新页面"><a href="#React刷新页面" class="headerlink" title="React刷新页面"></a>React刷新页面</h1><ul>
+<li>props</li>
+</ul>
+<p>props就是组件的属性，由外部通过 JSX 属性传入设置</p>
+<ul>
+<li>state</li>
+</ul>
+<p>state 是组件的当前状态, 根据状态 state 呈现不同的 UI 展示</p>
+<p><code>pure render:无状态组件非常简单，开销很低，如果可能的话尽量使用无状态组件</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    const HelloMessage = (props) =&gt; &lt;Text&gt; Hello $&#123;props.name&#125;&lt;/Text&gt;&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="React常用的组件库"><a href="#React常用的组件库" class="headerlink" title="React常用的组件库"></a>React常用的组件库</h1><h2 id="Immutable"><a href="#Immutable" class="headerlink" title="Immutable"></a>Immutable</h2><ul>
+<li>JavaScript 中的对象一般是可变的（Mutable）,当应用复杂后，这就造成了非常大的隐患</li>
+<li>Immutable就是解决这种问题，将数据进行解耦，只有oldState =&gt; newState，不会在老的数据上面做修改，会生成新的数据。</li>
+<li>一定程度上实现了MVVM的设计思想。</li>
+<li>List-&gt;Array, Map-&gt;Object</li>
+</ul>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>如果数据量很庞大，业务量很复杂的时候，依靠props来传递数据就显得有些复杂和难以维护，于是就有了redux和flux。</p>
+<ul>
+<li>State</li>
+<li>Reducer</li>
+<li>Action</li>
+<li>Store</li>
+</ul>
+<p>redux默认只会在程序中存在一个store，这与<a href="https://github.com/facebook/flux" target="_blank" rel="external">flux</a>的最大不同之处，store里面存储了所有的state，state存储了所有用到的数据，通过action的状态改变，在reducer里面做出相应的数据转变和传输。</p>
+<p>通过依靠connect的方法，将store中的state以props的方式传递到component中去。</p>
+<h2 id="Immutable与Redux的结合使用"><a href="#Immutable与Redux的结合使用" class="headerlink" title="Immutable与Redux的结合使用"></a>Immutable与Redux的结合使用</h2><p>immutable与redux相辅相成，可以在redux的state中将数据用immutable封装起来，防止数据出现变动。<br>每一个redux中action的改变，触发reducer中的数据转变。也只有在reducer中才可以进行state的数据转变，保证了数据的不可变性。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

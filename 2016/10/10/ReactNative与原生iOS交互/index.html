@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      ReactNative与原生iOS交互 | Jiayu&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="React Native与原生的交互ios解析引擎RN调用的是ios自带的JavaScriptCore做为JS的解析引擎，但是并没有用JSContent、JSValue类，而是自己实现了一套机制。
+bridgeOC端和JS端分别各有一个bridge，两个bridge都保存了同样一份模块配置表，JS调用OC模块方法时，通过bridge里的配置表把模块方法转为模块ID和方法ID传给OC，OC通过bri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactNative与原生iOS交互 | Jiayu's Blog">
+<meta property="og:url" content="http://yoursite.com/2016/10/10/ReactNative与原生iOS交互/index.html">
+<meta property="og:site_name" content="Jiayu's Blog">
+<meta property="og:description" content="React Native与原生的交互ios解析引擎RN调用的是ios自带的JavaScriptCore做为JS的解析引擎，但是并没有用JSContent、JSValue类，而是自己实现了一套机制。
+bridgeOC端和JS端分别各有一个bridge，两个bridge都保存了同样一份模块配置表，JS调用OC模块方法时，通过bridge里的配置表把模块方法转为模块ID和方法ID传给OC，OC通过bri">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-c6cfe34a6c904d58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-10-10T09:19:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReactNative与原生iOS交互 | Jiayu's Blog">
+<meta name="twitter:description" content="React Native与原生的交互ios解析引擎RN调用的是ios自带的JavaScriptCore做为JS的解析引擎，但是并没有用JSContent、JSValue类，而是自己实现了一套机制。
+bridgeOC端和JS端分别各有一个bridge，两个bridge都保存了同样一份模块配置表，JS调用OC模块方法时，通过bridge里的配置表把模块方法转为模块ID和方法ID传给OC，OC通过bri">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1397715-c6cfe34a6c904d58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Jiayu&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">ReactNative与原生iOS交互</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-10" class="post-meta__date date">2016-10-10</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/iOS-ReactNative/">iOS, ReactNative</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h1 id="React-Native与原生的交互"><a href="#React-Native与原生的交互" class="headerlink" title="React Native与原生的交互"></a>React Native与原生的交互</h1><h2 id="ios解析引擎"><a href="#ios解析引擎" class="headerlink" title="ios解析引擎"></a>ios解析引擎</h2><p>RN调用的是ios自带的JavaScriptCore做为JS的解析引擎，但是并没有用JSContent、JSValue类，而是自己实现了一套机制。</p>
+<h3 id="bridge"><a href="#bridge" class="headerlink" title="bridge"></a>bridge</h3><p>OC端和JS端分别各有一个bridge，两个bridge都保存了同样一份模块配置表，JS调用OC模块方法时，通过bridge里的配置表把模块方法转为模块ID和方法ID传给OC，OC通过bridge的模块配置表找到对应的方法执行。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1397715-c6cfe34a6c904d58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Module"></p>
+<p>1、 JS端调用某个OC模块暴露出来的方法。</p>
+<p>2、 把上一步的调用分解为ModuleName,MethodName,arguments，再扔给MessageQueue处理。</p>
+<p>在初始化时模块配置表上的每一个模块都生成了对应的remoteModule对象，对象里也生成了跟模块配置表里一一对应的方法，这些方法里可以拿到自身的模块名，方法名，并对callback进行一些处理，再移交给MessageQueue。具体实现在BatchedBridgeFactory.js的<a href="https://github.com/facebook/react-native/blob/72d3d724a3a0c6bc46981efd0dad8f7f61121a47/Libraries/BatchedBridge/BatchingImplementation/BatchedBridgeFactory.js#L37" target="_blank" rel="external">_createBridgedModule</a>里，整个实现区区24行代码，感受下JS的魔力吧。</p>
+<p>3、 在这一步把JS的callback函数缓存在MessageQueue的一个成员变量里，用CallbackID代表callback。在通过保存在MessageQueue的模块配置表把上一步传进来的ModuleName和MethodName转为ModuleID和MethodID。</p>
+<p>4、 把上述步骤得到的ModuleID,MethodId,CallbackID和其他参数argus传给OC。至于具体是怎么传的，后面再说。</p>
+<p>5、 OC接收到消息，通过模块配置表拿到对应的模块和方法。</p>
+<p>实际上模块配置表已经经过处理了，跟JS一样，在初始化时OC也对模块配置表上的每一个模块生成了对应的实例并缓存起来，模块上的每一个方法也都生成了对应的RCTModuleMethod对象，这里通过ModuleID和MethodID取到对应的Module实例和RCTModuleMethod实例进行调用。具体实现在_handleRequestNumber:moduleID:methodID:params:。</p>
+<p>6、 RCTModuleMethod对JS传过来的每一个参数进行处理。</p>
+<p>RCTModuleMethod可以拿到OC要调用的目标方法的每个参数类型，处理JS类型到目标类型的转换，所有JS传过来的数字都是NSNumber，这里会转成对应的int/long/double等类型，更重要的是会为block类型参数的生成一个block。</p>
+<p>例如-(void)select:(int)index response:(RCTResponseSenderBlock)callback 这个方法，拿到两个参数的类型为int,block，JS传过来的两个参数类型是NSNumber,NSString(CallbackID)，这时会把NSNumber转为int，NSString(CallbackID)转为一个block，block的内容是把回调的值和CallbackID传回给JS。</p>
+<p>这些参数组装完毕后，通过NSInvocation动态调用相应的OC模块方法。</p>
+<p>7、 OC模块方法调用完，执行block回调。</p>
+<p>8、 调用到第6步说明的RCTModuleMethod生成的block。</p>
+<p>9、 block里带着CallbackID和block传过来的参数去调JS里MessageQueue的方法invokeCallbackAndReturnFlushedQueue。</p>
+<p>10、 MessageQueue通过CallbackID找到相应的JS callback方法。</p>
+<p>11、 调用callback方法，并把OC带过来的参数一起传过去，完成回调。</p>
+<p><code>整个流程就是这样，简单概括下，差不多就是：JS函数调用转ModuleID/MethodID -&gt; callback转CallbackID -&gt; OC根据ID拿到方法 -&gt; 处理参数 -&gt; 调用OC方法 -&gt; 回调CallbackID -&gt; JS通过CallbackID拿到callback执行</code></p>
+<h3 id="UI的交互"><a href="#UI的交互" class="headerlink" title="UI的交互"></a>UI的交互</h3><p>UI的交互：Apple的适配是基于AutoLayout的适配，并不是通用的CSS适配。于是facebook实现了一套<a href="https://github.com/facebook/css-layout" target="_blank" rel="external">机制</a>：将flexbox布局转变成C,C#。具体可以参考reactnative中ios下的<code>Layout.c</code>和<code>Layout.h</code>文件。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
