@@ -16,18 +16,13 @@
     
     
 
-    <meta name="description" content="iOS创建静态库纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。
-类似于各类SDK，只暴露bundle文件，和Framework文件。可以将本地文件（高内聚，低耦合之类）文件放到pod中。HERE也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有.h文件，自己用的时候好装B的说。
-xcode: 7.3.1
-bundle文件b">
+    <meta name="description" content="iOS创建静态库纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。 类似于各类SDK，只暴露bundle文件，和Framework文件。可以将本地文件（高内聚，低耦合之类）文件放到pod中。HERE也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有">
+<meta name="keywords" content="iOS，ReactNative">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创建ios static Framework | Jiayu's Blog">
+<meta property="og:title" content="创建ios static Framework | Jiayu&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2016/10/10/创建ios-static-Framework/index.html">
-<meta property="og:site_name" content="Jiayu's Blog">
-<meta property="og:description" content="iOS创建静态库纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。
-类似于各类SDK，只暴露bundle文件，和Framework文件。可以将本地文件（高内聚，低耦合之类）文件放到pod中。HERE也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有.h文件，自己用的时候好装B的说。
-xcode: 7.3.1
-bundle文件b">
+<meta property="og:site_name" content="Jiayu&#39;s Blog">
+<meta property="og:description" content="iOS创建静态库纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。 类似于各类SDK，只暴露bundle文件，和Framework文件。可以将本地文件（高内聚，低耦合之类）文件放到pod中。HERE也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有.h文件，自己用的时候好装B的说。 xcode: 7.3.1 bundle文件b">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-ff3ed9d6cf8b5eac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-82e3b66e0ef3498e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-abecca22e746d233.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -40,11 +35,8 @@ bundle文件b">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1397715-0f6d92b5376538c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2016-10-10T09:25:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="创建ios static Framework | Jiayu's Blog">
-<meta name="twitter:description" content="iOS创建静态库纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。
-类似于各类SDK，只暴露bundle文件，和Framework文件。可以将本地文件（高内聚，低耦合之类）文件放到pod中。HERE也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有.h文件，自己用的时候好装B的说。
-xcode: 7.3.1
-bundle文件b">
+<meta name="twitter:title" content="创建ios static Framework | Jiayu&#39;s Blog">
+<meta name="twitter:description" content="iOS创建静态库纯笔记。 之前用到reactnative与原生ios交互，创建静态库方式可以更加解耦交互代码。 类似于各类SDK，只暴露bundle文件，和Framework文件。可以将本地文件（高内聚，低耦合之类）文件放到pod中。HERE也可以放在Framework中，实现模块化，功能化，不过这样看不到源文件，只有.h文件，自己用的时候好装B的说。 xcode: 7.3.1 bundle文件b">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1397715-ff3ed9d6cf8b5eac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
     
