@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      创建.a静态文件问题 | Jiayu&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="前提今天牵扯到一个API加密算法的问题，要把加密算法和密钥放到静态文件里面，防止代码泄漏造成的api加密破解，攻击。 创建.a 静态文件新建工程 — 选择Cocoa Touch Static Library — 相应的代码 —   Targets, Build Phases, Copy  Files 选择想要暴露出来的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建.a静态文件问题 | Jiayu&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2018/03/05/文件问题/index.html">
+<meta property="og:site_name" content="Jiayu&#39;s Blog">
+<meta property="og:description" content="前提今天牵扯到一个API加密算法的问题，要把加密算法和密钥放到静态文件里面，防止代码泄漏造成的api加密破解，攻击。 创建.a 静态文件新建工程 — 选择Cocoa Touch Static Library — 相应的代码 —   Targets, Build Phases, Copy  Files 选择想要暴露出来的文件 — Targets和Project, Build Active Archi">
+<meta property="og:updated_time" content="2018-03-05T13:27:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="创建.a静态文件问题 | Jiayu&#39;s Blog">
+<meta name="twitter:description" content="前提今天牵扯到一个API加密算法的问题，要把加密算法和密钥放到静态文件里面，防止代码泄漏造成的api加密破解，攻击。 创建.a 静态文件新建工程 — 选择Cocoa Touch Static Library — 相应的代码 —   Targets, Build Phases, Copy  Files 选择想要暴露出来的文件 — Targets和Project, Build Active Archi">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Jiayu&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">创建.a静态文件问题</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-03-05" class="post-meta__date date">2018-03-05</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><p>今天牵扯到一个API加密算法的问题，要把加密算法和密钥放到静态文件里面，防止代码泄漏造成的api加密破解，攻击。</p>
+<h1 id="创建-a-静态文件"><a href="#创建-a-静态文件" class="headerlink" title="创建.a 静态文件"></a>创建.a 静态文件</h1><p>新建工程 — 选择<code>Cocoa Touch Static Library</code> — 相应的代码 —   <code>Targets</code>, <code>Build Phases</code>, <code>Copy  Files</code> 选择想要暴露出来的文件 — <code>Targets</code>和<code>Project</code>, <code>Build Active Architecture Only</code> 设为NO。— 分别在模拟器下和真机下run。 — 左侧目录下的products就回有libXXXX.a 文件由红(未生成)变成黑(已生成) — Show In  Finder</p>
+<p><code>Build Active Architecture Only</code>这个字段表明：只在当前的处理器下进行编译，当进行打包时需要兼容所有的处理器。</p>
+<p>iPhone5s及以上：arm64(真机) 和 x86_64(模拟器)<br>iPhone5及一下：arm7(真机) arm7v(真机)和i386(模拟器)</p>
+<h1 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h1><p>上一步会得到两种.a文件，一种是支持模拟器的，一种是支持真机的。<br>调用命令: lipo -create ‘文件路径/libXXXX.a’ ‘文件路径/libXXXX.a’ -output ‘文件路径/libXX.a’  生成一个同时支持模拟器和真机的.a文件。</p>
+<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>整个开发环境在xcode 9+,  <code>Build Active Architecture Only</code>及时设为NO，生成的libXXXX.a文件通过命令 <code>lipo -info libXXXX.a</code> 查看也只支持一种 arm64或者x86_64的格式。</p>
+<p>具体的原因没有细究，猜想应该是默认的支持的系统版本太高了，新建工程默认是支持ios11+的，目前支持ios11+的全是支持arm64架构的。</p>
+<p>解决： 将支持的版本调低一点就好了<br><code>Targets</code> — <code>Build Settings</code> — <code>iOS Development Target</code>设为ios8.0</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
